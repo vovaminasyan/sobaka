@@ -7,9 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-
+    private static final UserService uS = new UserServiceImpl();
     public static void main(String[] args) {
-        UserService uS = new UserServiceImpl();
+
         uS.createUsersTable();
         uS.saveUser("Вася", "Иванов", (byte) 34);
         uS.saveUser("Оля", "Попова", (byte) 27);

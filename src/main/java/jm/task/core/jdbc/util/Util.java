@@ -8,6 +8,7 @@ public class Util {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trest2?useSSL=false&serverTimezone=UTC", "root", "555648");
+            conn.setAutoCommit(false);
         } catch(Exception e) {
             e.printStackTrace();
         }

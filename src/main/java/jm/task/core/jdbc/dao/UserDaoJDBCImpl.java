@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private static final Connection conn = Util.getConnection();
+    private final Connection conn = Util.getConnection();
 
     public UserDaoJDBCImpl() {
 
@@ -18,7 +18,13 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement stat = conn.createStatement()) {
             stat.executeUpdate("CREATE TABLE IF NOT EXISTS tabl(id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), " +
                     "lastName VARCHAR(100), age TINYINT)");
+            conn.commit();
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         }
     }
@@ -26,8 +32,14 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         try (Statement stat = conn.createStatement()) {
             stat.executeUpdate("DROP TABLE IF EXISTS tabl");
+            conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -38,8 +50,14 @@ public class UserDaoJDBCImpl implements UserDao {
             prestat.setByte(3, ag);
             prestat.executeUpdate();
             System.out.println("User с именем - " + nam + " добавлен в базу данных");
+            conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -47,8 +65,14 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement prestat = conn.prepareStatement("DELETE FROM tabl WHERE id = ?")) {
             prestat.setLong(1, id);
             prestat.executeUpdate();
+            conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -61,8 +85,14 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setId(rs.getLong("id"));
                 alluser.add(user);
             }
+            conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
         return alluser;
     }
@@ -70,8 +100,14 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
         try (Statement stat = conn.createStatement()) {
             stat.executeUpdate("TRUNCATE TABLE tabl");
+            conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
