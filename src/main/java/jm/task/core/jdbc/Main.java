@@ -12,7 +12,7 @@ public class Main {
 
         uS.createUsersTable();
         uS.saveUser("Вася", "Иванов", (byte) 34);
-        uS.saveUser("Оля", "Попова", (byte) 27);
+        uS.saveUser("Олеся", "Попова", (byte) 27);
         uS.saveUser("Иван", "Петров", (byte) 42);
         uS.saveUser("Катя", "Лесина", (byte) 22);
         System.out.println(uS.getAllUsers());
