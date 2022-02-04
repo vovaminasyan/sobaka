@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         uS.createUsersTable();
-       // uS.saveUser("Вася", "Иванов", (byte) 34);
+        uS.saveUser("Вася", "Иванов", (byte) 34);
        /* uS.saveUser("Олеся", "Попова", (byte) 27);
         uS.saveUser("Иван", "Петров", (byte) 42);
         uS.saveUser("Катя", "Лесина", (byte) 22);
