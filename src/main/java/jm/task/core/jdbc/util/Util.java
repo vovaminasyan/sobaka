@@ -31,7 +31,7 @@ public class Util {
                 Configuration config = new Configuration();
                 Properties set = new Properties();
                 set.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                set.put(Environment.URL, "jdbc:mysql://localhost:3306/trest2?useSSL=false&serverTimezone=UTS");
+                set.put(Environment.URL, "jdbc:mysql://localhost:3306/trest2?useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow");
                 set.put(Environment.USER, "root");
                 set.put(Environment.PASS, "555648");
                 set.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");

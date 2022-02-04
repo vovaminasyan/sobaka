@@ -152,7 +152,7 @@ public class UserDaoHibernateImpl implements UserDao {
         try {
             ses = sesFac.openSession();
             trans = ses.beginTransaction();
-            ses.createQuery("DELETE FROM tabl u").executeUpdate();
+            ses.createNativeQuery("TRUNCATE TABLE  tabl").executeUpdate();
             trans.commit();
         } catch (Exception e) {
             e.printStackTrace();
